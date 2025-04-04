@@ -33,17 +33,24 @@
 ### Frontend
 
 - สร้าง Credential file ใน`frontend/config` ใช้ template จาก `credential.example.js` จะsaveเป็นไฟล์ชื่อ `credential.js` และนำconfig จาก firebaseConfigมาใส่
-  ![credential_firebase](image/image-2)
+  ![credential_firebase](image/image-2.png)
 - สร้างไฟล์ `public/firebase-messaging-sw.js` โดยใช้ template จาก `public/firebase-messaging-sw.example.js` และนำส่วนที่เป็น credential นำข้อมูลจาก firebaseConfig มาใส่ด้วย
-  ![example_firebase-sw](image/image-3)
+   <div align="center">
+     <img src="image/image-3.png" alt="example_firebase-sw">
+   </div>
 - สร้างไฟล์ `.env` โดยใช้templateจาก `.env.example`
 (เมื่อใช้ Vite การ importข้อมูลจาก.envต้องใช้คำสั่ง `import.meta.env.VITE_[name]` แทน `process.env.REACT_APP_[name]` ปกติใช้ใน React)
-  ![dif_import_vite_react](image/image-4)
+   <div align="center">
+     <img src="image/image-4.png" alt="dif_import_vite_react">
+   </div>
 - นำ public key จาก Cloud Messaging และทำการ Generate key pair ขึ้นมาเพื่อใช้สำหรับ identify และนำไปใส่ในไฟล์.env
-  ![public_key_from_firebase](image/image-5)
+  ![(image/image-5.png)
+  <div align="center">
+     <img src="image/image5.png" alt="public_key_from_firebase">
+   </div>
 - การทำงานหลักอยู่ที่ `App.jsx` และ `public/firebase-messaging-sw.js`
 - เมื่อผู้ใช้อนุญาตการแจ้งเตือน Firebase Notify จะทำงานได้ทั้ง Foreground และBackground โดยForeground ทำงานใน `App.jsx` และ Background ทำงานใน service worker `public/firebase-messaging-sw.js`
-  ![allow notify](image/image-6)
+  ![allow notify](image/image-6.png)
 
 ### Backend
 - ใน firebase console ไปที่ Project settings > Service accounts และ Download service account file
@@ -67,6 +74,6 @@
    ```
  - *สามารถใช้postmane,apidog or another client ในการส่งrequest*
 4. Result Foreground
-   ![resut-foreground](image/image-8)
+   ![resut-foreground](image/image-8.png)
 - Result Background
-   ![result-Background](image/image-9)
+   ![result-Background](image/image-9.png)
