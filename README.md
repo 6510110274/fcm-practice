@@ -46,7 +46,7 @@
 - นำ public key จาก Cloud Messaging และทำการ Generate key pair ขึ้นมาเพื่อใช้สำหรับ identify และนำไปใส่ในไฟล์.env
   ![(image/image-5.png)
   <div align="center">
-     <img src="image/image5.png" alt="public_key_from_firebase">
+     <img src="image/image-5.png" alt="public_key_from_firebase">
    </div>
 - การทำงานหลักอยู่ที่ `App.jsx` และ `public/firebase-messaging-sw.js`
 - เมื่อผู้ใช้อนุญาตการแจ้งเตือน Firebase Notify จะทำงานได้ทั้ง Foreground และBackground โดยForeground ทำงานใน `App.jsx` และ Background ทำงานใน service worker `public/firebase-messaging-sw.js`
