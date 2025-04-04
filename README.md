@@ -27,7 +27,7 @@
 ## 🌟Initial Firebase Cloud Message
 - สร้าง Project ใน Firebase  🆕 [Firebase Create Project](https://console.firebase.google.com/)
 - คลิก ***🖱️Add App*** และเลือก ***🖱️Web App***.
-  ![alt text](image)
+  ![create web in firebase project](image/image-1.png)
 - See the Official Docs at 📖 [Firebase Cloud Messaging Documentation](https://firebase.google.com/docs/cloud-messaging/js/client)
 
 ### Frontend
