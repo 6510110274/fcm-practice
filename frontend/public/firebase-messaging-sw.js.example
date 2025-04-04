@@ -1,0 +1,43 @@
+// Load Firebase SDK scripts for Firebase Messaging in the Service Worker.
+// Note: Only Firebase Messaging can be used here, other Firebase libraries are not available in the Service Worker.
+// This example uses Firebase SDK version 10.13.2
+importScripts(
+  "https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"
+);
+importScripts(
+  "https://www.gstatic.com/firebasejs/10.13.2/firebase-messaging-compat.js"
+);
+
+// Initialize the Firebase app in the Service Worker by passing in your app's Firebase config object.
+// You can get this config from your Firebase project settings.
+// Read more: https://firebase.google.com/docs/web/setup#config-object
+firebase.initializeApp({
+  apiKey: "", // Enter your Firebase API Key here
+  authDomain: "", // Enter your Firebase Auth Domain here
+  databaseURL: "", // Enter your Firebase Database URL if available
+  projectId: "", // Enter your Firebase Project ID here
+  storageBucket: "", // Enter your Firebase Storage Bucket here
+  messagingSenderId: "", // Enter your Firebase Messaging Sender ID here
+  appId: "", // Enter your Firebase App ID here
+  measurementId: "", // Enter your Firebase Measurement ID here (if available)
+});
+
+// Retrieve an instance of Firebase Messaging to handle background messages.
+const messaging = firebase.messaging();
+
+// Set up a listener to handle background messages from Firebase Cloud Messaging (FCM).
+messaging.onBackgroundMessage((payload) => {
+  console.log(
+    "[firebase-messaging-sw.js] Received background message ",
+    payload
+  );
+  
+  // Customize the notification details to be shown
+  const notificationTitle = payload?.notification?.title; // The title of the notification
+  const notificationOptions = {
+    body: payload?.notification?.body, // The body text of the notification
+  };
+
+  // Display the notification with the provided title and options
+  self.registration.showNotification(notificationTitle, notificationOptions);
+});
