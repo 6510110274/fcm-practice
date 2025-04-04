@@ -2,7 +2,7 @@
 import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
-import credential from "./credential.json";
+import credential from "./credential";
 // Your web app's Firebase configuration
 const firebaseConfig = credential;
 
