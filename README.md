@@ -32,21 +32,41 @@
 
 ### Frontend
 
-- Create the Credential file in `frontend/config` from `credential.example.js` to `credential.js` and put the config from your firebase console in it.
-- Create file `public/firebase-messaging-sw.js` from `public/firebase-messaging-sw.example.js`
-- Create file `.env` from `.env.example` (When you import with vite use `import.meta.env.VITE_` in create-react-app use `process.env.REACT_APP_`)
-- Get the Vapid Key from your public key and keep in .env file
-  ![alt text](image-2.png)
-  ![alt text](image-3.png)
-- On Frontend Focus on Recieve a message
-- Main Logic is on `App.jsx` and `public/firebase-messaging-sw.js`
-
-- Firebase Notify is both on Foreground and Backgroud for the foregroud in App.jsx backgroud is in service worker
+- สร้าง Credential file ใน`frontend/config` ใช้ template จาก `credential.example.js` จะsaveเป็นไฟล์ชื่อ `credential.js` และนำconfig จาก firebaseConfigมาใส่
+  ![credential_firebase](image/image-2)
+- สร้างไฟล์ `public/firebase-messaging-sw.js` โดยใช้ template จาก `public/firebase-messaging-sw.example.js` และนำส่วนที่เป็น credential นำข้อมูลจาก firebaseConfig มาใส่ด้วย
+  ![example_firebase-sw](image/image-3)
+- สร้างไฟล์ `.env` โดยใช้templateจาก `.env.example`
+(เมื่อใช้ Vite การ importข้อมูลจาก.envต้องใช้คำสั่ง `import.meta.env.VITE_[name]` แทน `process.env.REACT_APP_[name]` ปกติใช้ใน React)
+  ![dif_import_vite_react](image/image-4)
+- นำ public key จาก Cloud Messaging และทำการ Generate key pair ขึ้นมาเพื่อใช้สำหรับ identify และนำไปใส่ในไฟล์.env
+  ![public_key_from_firebase](image/image-5)
+- การทำงานหลักอยู่ที่ `App.jsx` และ `public/firebase-messaging-sw.js`
+- เมื่อผู้ใช้อนุญาตการแจ้งเตือน Firebase Notify จะทำงานได้ทั้ง Foreground และBackground โดยForeground ทำงานใน `App.jsx` และ Background ทำงานใน service worker `public/firebase-messaging-sw.js`
+  ![allow notify](image/image-6)
 
 ### Backend
+- ใน firebase console ไปที่ Project settings > Service accounts และ Download service account file
+  ![alt text](image/image-7.png)
+- Save file ลง folder `backend` และตั้งชื่อ file ว่า `serviceAccount.json`
+- For Document visit📖 [Firebase Cloud Messaging Documentation Send-Message](https://firebase.google.com/docs/cloud-messaging/send-message)
 
-- In firebase console, go to setting > Service account
-  and download your service account file
-  ![alt text](image-1.png)
-- Save file to backend and named the file `serviceAccount.json`
-- For Document visit https://firebase.google.com/docs/cloud-messaging/send-message
+## 🧪✅ Test Program
+1. หลังจาก Setting ทุกอย่างพร้อมทำการ run frontend
+   ```bash
+   cd frontend
+   npm run dev
+   ```
+2. คลิกปุ่ม Register Notify และรอรับ Token
+3. สร้าง post request และส่งไปยัง http://localhost:3001/api/test ตามด้วยJSON Style Body
+   ```json
+   {
+       "token":"[TOKEN_FROM_FRONTEND]",
+       "message":"Hiiii"
+   }
+   ```
+ - *สามารถใช้postmane,apidog or another client ในการส่งrequest*
+4. Result Foreground
+   ![resut-foreground](image/image-8)
+- Result Background
+   ![result-Background](image/image-9)
