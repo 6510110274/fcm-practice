@@ -44,7 +44,6 @@
      <img src="image/image-4.png" alt="dif_import_vite_react">
    </div>
 - นำ public key จาก Cloud Messaging และทำการ Generate key pair ขึ้นมาเพื่อใช้สำหรับ identify และนำไปใส่ในไฟล์.env
-  ![(image/image-5.png)
   <div align="center">
      <img src="image/image-5.png" alt="public_key_from_firebase">
    </div>
